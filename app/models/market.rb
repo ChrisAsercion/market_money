@@ -7,4 +7,7 @@ class Market < ApplicationRecord
   validates_presence_of :zip
   validates_presence_of :lat
   validates_presence_of :lon
+
+  has_many :market_vendors
+  has_many :vendors, through: :market_vendors
 end

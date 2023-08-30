@@ -20,4 +20,6 @@ class Api::V0::MarketsController < ApplicationController
     render json: error_response, status: :not_found
     end
   end
+
+
 end

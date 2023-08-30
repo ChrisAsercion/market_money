@@ -151,4 +151,28 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
       expect(json_response["errors"][0]["detail"]).to eq("Couldn't find Vendor with 'id'=123123123123")
     end
   end
+
+  describe 'DELETE /api/v0/vendors/:id' do
+    it 'When a valid id is passed in, that vendor will be destroyed, as well as any associations that vendor had' do
+      v1 = create(:vendor)
+  
+      m1 = create(:market)
+
+      mv1 = create(:market_vendor, market: m1, vendor: v1)
+
+      delete api_v0_vendor_path(v1)
+
+      expect(Vendor.all.count).to eq(0)
+    end
+
+    it 'returns a flash message if the user cannot be found' do
+      patch_data = attributes_for(:vendor)
+
+      delete api_v0_vendor_path("123123123123")
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response["errors"][0]["detail"]).to eq("Couldn't find Vendor with 'id'=123123123123")
+    end
+  end
 end

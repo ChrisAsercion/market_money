@@ -79,17 +79,29 @@
           null,
           1,
           1,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
           1,
           null,
           1,
           null,
           1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
           null,
           1,
           null,
@@ -379,11 +391,11 @@
         "lines": [
           1,
           1,
-          2,
-          2,
-          2,
-          2,
-          2,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           null
         ]
@@ -405,28 +417,6 @@
           null,
           null,
           null,
-          null
-        ]
-      },
-      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/models/vendor.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
           null
         ]
       },
@@ -467,13 +457,12 @@
           null,
           null,
           1,
-          null,
           1,
           null,
-          null,
           1,
-          null,
           0,
+          null,
+          1,
           null,
           null,
           null,
@@ -491,56 +480,29 @@
           null
         ]
       },
-      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/serializers/vendor_serializer.rb": {
+      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/models/vendor.rb": {
         "lines": [
           1,
           1,
           1,
-          null,
-          1,
-          null
-        ]
-      },
-      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/serializers/market_serializer.rb": {
-        "lines": [
-          1,
           1,
           1,
           null,
           1,
-          0,
           null,
-          null,
-          1,
-          null
-        ]
-      },
-      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/models/market_vendor.rb": {
-        "lines": [
-          1,
           1,
           1,
           null
         ]
       },
-      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/models/market.rb": {
+      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/models/application_record.rb": {
         "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
           1,
           1,
           null
         ]
       }
     },
-    "timestamp": 1693417653
+    "timestamp": 1693418318
   }
 }

@@ -33,11 +33,11 @@ class Api::V0::VendorsController < ApplicationController
   end
 
   def create
-    vendor = Vendor.create!(vendor_params)
+    vendor = Vendor.new(vendor_params)
 
-    begin
+    if vendor.save 
       render json: VendorSerializer.new(vendor), status: :created
-    rescue
+    else 
       render json: { errors: vendor.errors.full_messages }, staus: :unprocessable_entity
     end
   end

@@ -74,6 +74,7 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
   #US5
   describe "POST /api/v0/vendors" do
     it "sends new information of a valid vendor to be added to the database" do
+      
       new_vendor_info = attributes_for(:vendor)
 
       post api_v0_vendors_path, params:{ vendor: new_vendor_info }
@@ -86,6 +87,18 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
 
       #signifies the creation of a vendor
       expect(json_response["data"]["type"]).to eq("vendor")
+    end
+
+    it "sends in incomplete information to the post and receives a flash notice back" do
+
+        #name is missing
+      incomplete_data = {:description=>"Knowledge is pitiless.", :contact_name=>"Shirahoshi", :contact_phone=>"(275) 225-5321 x5234", :credit_accepted=>false}
+
+      post api_v0_vendors_path, params:{ vendor: incomplete_data }
+
+      json_response = JSON.parse(response.body)
+      
+      expect(json_response["errors"][0]).to eq("Name can't be blank")
     end
   end
 end

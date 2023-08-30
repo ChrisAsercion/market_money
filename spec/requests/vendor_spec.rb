@@ -70,4 +70,22 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
       expect(flash_message).to eq("Couldn't find Vendor with 'id'=123123123123")
     end
   end
+
+  #US5
+  describe "POST /api/v0/vendors" do
+    it "sends new information of a valid vendor to be added to the database" do
+      new_vendor_info = attributes_for(:vendor)
+
+      post api_v0_vendors_path, params:{ vendor: new_vendor_info }
+
+      json_response = JSON.parse(response.body)
+
+      #The results are the same as the attributes sent into the post by the test
+      expect(json_response["data"]["attributes"]["name"]).to eq(new_vendor_info[:name])
+      expect(json_response["data"]["attributes"]["contact_name"]).to eq(new_vendor_info[:contact_name])
+
+      #signifies the creation of a vendor
+      expect(json_response["data"]["type"]).to eq("vendor")
+    end
+  end
 end

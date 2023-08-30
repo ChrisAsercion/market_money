@@ -105,8 +105,50 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
 
       json_response = JSON.parse(response.body)
       
-      ##{attribute} can't be blank is the expected response
+      # #{attribute} can't be blank is the expected response
       expect(json_response["errors"][0]).to eq("Name can't be blank")
+    end
+  end
+
+  #US 6
+  describe 'PATCH /api/v0/vendors/:id' do
+    it 'can pass any number and combination of attributes to be updated' do
+      v1 = create(:vendor)
+      
+      #This updates the name of the vendor
+      patch_data = {:name=> "A Brand New Update Company", :description=> v1.description, :contact_name=> v1.contact_name, :contact_phone=> v1.contact_phone, :credit_accepted=> v1.credit_accepted}
+
+      patch api_v0_vendor_path(v1), params:{ vendor: patch_data}
+
+      json_response = JSON.parse(response.body)
+      
+      expect(json_response["data"]["attributes"]["name"]).to eq("A Brand New Update Company")
+
+    end
+
+    it 'returns a flash message if the user cannot be found' do
+      v1 = create(:vendor)
+      
+      #This sends an incomplete update to the update feature. It is testing for both nil and empty values with name and description
+      incomplete_patch_data = {:name=> nil , :description=> "", :contact_name=> v1.contact_name, :contact_phone=> v1.contact_phone, :credit_accepted=> v1.credit_accepted}
+
+      patch api_v0_vendor_path(v1), params:{ vendor: incomplete_patch_data}
+
+      json_response = JSON.parse(response.body)
+      
+      expect(json_response["errors"][0]).to eq("Name can't be blank")
+
+      expect(json_response["errors"][1]).to eq("Description can't be blank")
+    end
+
+    it 'returns a flash message if the user cannot be found' do
+      patch_data = attributes_for(:vendor)
+
+      patch api_v0_vendor_path("123123123123"), params:{ vendor: patch_data}
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response["errors"][0]["detail"]).to eq("Couldn't find Vendor with 'id'=123123123123")
     end
   end
 end

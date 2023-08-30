@@ -15,4 +15,20 @@ class Api::V0::VendorsController < ApplicationController
     render json: error_response, status: :not_found
     end
   end
+
+  def show
+    
+    begin
+      render json: VendorSerializer.new(Vendor.find(params[:id]))
+    rescue ActiveRecord::RecordNotFound => error
+      error_response = {
+        "errors": [
+            {
+                "detail": error.message
+            }
+        ]
+        }
+    render json: error_response, status: :not_found
+    end
+  end
 end

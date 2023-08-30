@@ -42,6 +42,27 @@ class Api::V0::VendorsController < ApplicationController
     end
   end
 
+  def update
+    begin
+      vendor = Vendor.find(params[:id])
+      
+      if vendor.update(vendor_params)
+        render json: VendorSerializer.new(vendor), status: :ok
+      else
+        render json: { errors: vendor.errors.full_messages }, staus: :unprocessable_entity
+      end
+    rescue ActiveRecord::RecordNotFound => error
+      error_response = {
+        "errors": [
+            {
+                "detail": error.message
+            }
+        ]
+        }
+    render json: error_response, status: :not_found
+    end
+  end
+
   private
 
   def vendor_params

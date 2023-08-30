@@ -81,23 +81,31 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
 
       json_response = JSON.parse(response.body)
 
+      vendors = Vendor.all
+      newest_vendor = vendors.last
+
       #The results are the same as the attributes sent into the post by the test
       expect(json_response["data"]["attributes"]["name"]).to eq(new_vendor_info[:name])
       expect(json_response["data"]["attributes"]["contact_name"]).to eq(new_vendor_info[:contact_name])
 
-      #signifies the creation of a vendor
+      #Signifies the creation of a vendor
       expect(json_response["data"]["type"]).to eq("vendor")
-    end
+
+      #Shows that the newest added vendor matches the information that was sent in as part of a vendor creation
+      expect(newest_vendor.name).to eq(new_vendor_info[:name])
+      expect(newest_vendor.description).to eq(new_vendor_info[:description])
+    end 
 
     it "sends in incomplete information to the post and receives a flash notice back" do
 
-        #name is missing
+        #name is missing in the params which should flag an error
       incomplete_data = {:description=>"Knowledge is pitiless.", :contact_name=>"Shirahoshi", :contact_phone=>"(275) 225-5321 x5234", :credit_accepted=>false}
 
       post api_v0_vendors_path, params:{ vendor: incomplete_data }
 
       json_response = JSON.parse(response.body)
       
+      ##{attribute} can't be blank is the expected response
       expect(json_response["errors"][0]).to eq("Name can't be blank")
     end
   end

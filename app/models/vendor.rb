@@ -3,7 +3,8 @@ class Vendor < ApplicationRecord
   validates_presence_of :description
   validates_presence_of :contact_name
   validates_presence_of :contact_phone
-  validates_presence_of :credit_accepted
+  #validates_presence_of :credit_accepted
+  validates :credit_accepted, inclusion: { in: [true, false] }
 
   has_many :market_vendors
   has_many :markets, through: :market_vendors

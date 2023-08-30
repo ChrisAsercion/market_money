@@ -1,14 +1,9 @@
-class Api::V0::MarketsController < ApplicationController
-
+class Api::V0::VendorsController < ApplicationController
   def index
-    #require 'pry'; binding.pry
-    markets = Market.all
-    render json: MarketSerializer.new(markets)
-  end
-
-  def show
     begin
-      render json: MarketSerializer.new(Market.find(params[:id]))
+      market = Market.find(params[:market_id])
+      vendors = market.vendors
+      render json: VendorSerializer.new(vendors)
     rescue ActiveRecord::RecordNotFound => error
       error_response = {
         "errors": [
@@ -16,7 +11,7 @@ class Api::V0::MarketsController < ApplicationController
                 "detail": error.message
             }
         ]
-    }
+        }
     render json: error_response, status: :not_found
     end
   end

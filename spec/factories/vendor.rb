@@ -4,6 +4,6 @@ FactoryBot.define do
     description { Faker::Books::Dune.saying }
     contact_name { Faker::JapaneseMedia::OnePiece.character  }
     contact_phone { Faker::PhoneNumber.phone_number }
-    credit_accepted { Faker::Boolean.boolean(true_ratio: 0.9)}
+    credit_accepted {[true, false].sample}
   end
 end

@@ -283,14 +283,14 @@
         "lines": [
           1,
           1,
-          9,
-          9,
-          9,
-          9,
-          9,
-          9,
-          9,
-          9,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
           null,
           null
         ]
@@ -308,11 +308,11 @@
         "lines": [
           1,
           1,
-          15,
-          15,
-          15,
-          15,
-          15,
+          16,
+          16,
+          16,
+          16,
+          16,
           null,
           null
         ]
@@ -327,6 +327,8 @@
           null,
           1,
           1,
+          1,
+          null,
           1,
           null,
           1,
@@ -501,6 +503,42 @@
           1,
           null,
           1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/spec/requests/market_vendor_spec.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
           null,
           null,
           null
@@ -693,7 +731,6 @@
           1,
           null,
           1,
-          null,
           1,
           1,
           null,
@@ -743,6 +780,38 @@
           1,
           1,
           null,
+          1,
+          null
+        ]
+      },
+      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/controllers/api/v0/market_vendors_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          2,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/chrisasercion/turing/2mod/3mod/solo/market_money/app/serializers/market_vendor_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
           1,
           null
         ]
@@ -843,6 +912,6 @@
         ]
       }
     },
-    "timestamp": 1693439383
+    "timestamp": 1693505449
   }
 }

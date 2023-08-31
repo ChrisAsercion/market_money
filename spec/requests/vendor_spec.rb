@@ -14,7 +14,7 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
       mv1 = create(:market_vendor, market: m1, vendor: v1)
       mv2 = create(:market_vendor, market: m1, vendor: v2)
 
-      get api_v0_market_vendors_path(m1)
+      get "/api/v0/markets/#{m1.id}/vendors"
 
       json_response = JSON.parse(response.body)
       
@@ -38,7 +38,7 @@ RSpec.describe 'API V0 Market Vendors', type: :request do
       
       mv1 = create(:market_vendor, market: m1, vendor: v1)
 
-      get api_v0_market_vendors_path("123123123123")
+      get "/api/v0/markets/123123123123/vendors"
 
       json_response = JSON.parse(response.body)
       flash_message = json_response["errors"][0]["detail"]

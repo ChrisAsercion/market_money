@@ -77,4 +77,31 @@ RSpec.describe 'API V0 Markets', type: :request do
       expect(flash_message).to eq("Couldn't find Market with 'id'=123123123123")
     end
   end
+
+  #US 10
+  describe 'GET /api/v0/markets/search' do
+    it 'an accept city, state, and name parameters' do
+      market1 = create(:market, state: 'California', city: 'Los Angeles', name: 'Market A')
+      market2 = create(:market, state: 'California', city: 'San Francisco', name: 'Market B')
+
+      get search_api_v0_markets_path params: { state: 'California', city: 'Los Angeles', name: 'Market A' }
+
+      json_response = JSON.parse(response.body)
+
+      expect(response).to have_http_status(:ok)
+      
+      expect(json_response[0]['id']).to eq(market1.id)
+      expect(json_response[0]['name']).to eq(market1.name)
+    end
+
+    context 'with invalid parameters' do
+      it 'returns an error message and 422 status code for invalid parameter combination' do
+        get search_api_v0_markets_path params: { state: 'California', city: 'Los Angeles' }
+
+        json_response = JSON.parse(response.body)
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(json_response['errors']).to eq('Invalid parameters')
+      end
+    end
+  end
 end

@@ -10,4 +10,22 @@ class Market < ApplicationRecord
 
   has_many :market_vendors
   has_many :vendors, through: :market_vendors
+
+  def self.search_by_params(params)
+    markets = self.all
+    
+    if params[:state].present?
+      markets = markets.where(state: params[:state])
+    end
+    
+    if params[:city].present?
+      markets = markets.where(city: params[:city])
+    end
+    
+    if params[:name].present?
+      markets = markets.where(name: params[:name])
+    end
+    
+    markets
+  end
 end
